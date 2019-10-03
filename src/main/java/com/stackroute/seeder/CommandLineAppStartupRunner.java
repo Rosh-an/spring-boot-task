@@ -18,7 +18,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
     MovieRepository movieRepository;
     @Override
     public void run(String... args) throws Exception {
-        Movie movie= new Movie(2,"default","default", BigDecimal.valueOf(0));
+        Movie movie = new Movie(2, "default", "default", BigDecimal.valueOf(0));
         movieRepository.save(movie);
     }
 }
