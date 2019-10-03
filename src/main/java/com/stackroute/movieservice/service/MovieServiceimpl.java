@@ -47,4 +47,10 @@ public class MovieServiceimpl implements MovieService {
         return movieRepository.save(updatedmovie);
     }
 
+    @Override
+    public List getMovies(String name)
+    {
+        return movieRepository.getMovies(name);
+    }
+
 }
