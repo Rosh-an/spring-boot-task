@@ -2,6 +2,8 @@ package com.stackroute.movieservice.controller;
 
 
 import com.stackroute.movieservice.domain.Movie;
+import com.stackroute.movieservice.exceptions.MovieAlreadyExistsException;
+import com.stackroute.movieservice.exceptions.MovieNotFoundException;
 import com.stackroute.movieservice.service.MovieService;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.HttpStatus;
@@ -28,7 +30,7 @@ public class MovieController {
         try{
             movieService.saveMovie(movie);
             responseEntity = new ResponseEntity<String>("Successfully created", HttpStatus.CREATED);
-        } catch (Exception e)
+        } catch (MovieAlreadyExistsException e)
         {
             responseEntity= new ResponseEntity<String>(e.getMessage(),HttpStatus.CONFLICT);
         }
@@ -45,7 +47,14 @@ public class MovieController {
     @DeleteMapping("movie/{id}")
     public ResponseEntity<?> deleteUser(@PathVariable("id") int id)
     {
-        return new ResponseEntity<Boolean>(movieService.deleteMovie(id),HttpStatus.OK);
+        ResponseEntity responseEntity;
+        try {
+            return new ResponseEntity<Boolean>(movieService.deleteMovie(id), HttpStatus.OK);
+        } catch(MovieNotFoundException e)
+        {
+            responseEntity= new ResponseEntity<String>(e.getMessage(),HttpStatus.CONFLICT);
+        }
+        return responseEntity;
     }
 
     //@PatchMapping("users")
