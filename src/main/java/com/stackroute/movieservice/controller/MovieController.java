@@ -21,11 +21,11 @@ public class MovieController {
     }
 
     @PostMapping("user")
-    public ResponseEntity<?> saveUser(@RequestBody Movie user)
+    public ResponseEntity<?> saveMovie(@RequestBody Movie movie)
     {
         ResponseEntity responseEntity;
         try{
-            movieService.saveUser(user);
+            movieService.saveMovie(movie);
             responseEntity = new ResponseEntity<String>("Successfully created", HttpStatus.CREATED);
         } catch (Exception e)
         {
@@ -35,21 +35,21 @@ public class MovieController {
     }
 
     @GetMapping("user")
-    public ResponseEntity<?> getAllUsers()
+    public ResponseEntity<?> getAllMovies()
     {
-        return new ResponseEntity<List<Movie>>(movieService.getAllUsers(),HttpStatus.OK);
+        return new ResponseEntity<List<Movie>>(movieService.getAllMovies(),HttpStatus.OK);
     }
 
     @DeleteMapping("user/{id}")
     public ResponseEntity<?> deleteUser(@PathVariable("id") int id)
     {
-        return new ResponseEntity<Boolean>(movieService.deleteUser(id),HttpStatus.OK);
+        return new ResponseEntity<Boolean>(movieService.deleteMovie(id),HttpStatus.OK);
     }
 
     //@PatchMapping("users")
     @RequestMapping(method=RequestMethod.PATCH,value="user")
-    public ResponseEntity<?> updateUser(@RequestBody Movie user)
+    public ResponseEntity<?> updateUser(@RequestBody Movie movie)
     {
-        return new ResponseEntity<Movie>(movieService.updateUser(user),HttpStatus.OK);
+        return new ResponseEntity<Movie>(movieService.updateMovie(movie),HttpStatus.OK);
     }
 }

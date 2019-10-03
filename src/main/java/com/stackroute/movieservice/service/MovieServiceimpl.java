@@ -20,31 +20,31 @@ public class MovieServiceimpl implements MovieService {
 
 
     @Override
-    public Movie saveUser(Movie user) {
-        Movie saveduser= movieRepository.save(user);
+    public Movie saveMovie(Movie movie) {
+        Movie savedmovie= movieRepository.save(movie);
 
-        return saveduser;
+        return savedmovie;
     }
 
     @Override
-    public List<Movie> getAllUsers() {
+    public List<Movie> getAllMovies() {
         return movieRepository.findAll();
     }
 
     @Override
-    public boolean deleteUser(int id) {
+    public boolean deleteMovie(int id) {
         movieRepository.deleteById(id);
         return true;
     }
 
     @Override
-    public Movie updateUser(Movie user) {
-        Movie updateduser= movieRepository.getOne(user.getId());
-        updateduser.setTitle(user.getTitle());
-        updateduser.setGenre(user.getGenre());
-        updateduser.setBudget(user.getBudget());
+    public Movie updateMovie(Movie movie) {
+        Movie updatedmovie= movieRepository.getOne(movie.getId());
+        updatedmovie.setTitle(movie.getTitle());
+        updatedmovie.setGenre(movie.getGenre());
+        updatedmovie.setBudget(movie.getBudget());
     //    saveduser.setId(user.getId());
-        return movieRepository.save(updateduser);
+        return movieRepository.save(updatedmovie);
     }
 
 }

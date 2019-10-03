@@ -7,10 +7,10 @@ import java.util.List;
 
 public interface MovieService {
 
-    public Movie saveUser(Movie user);
-    public List<Movie> getAllUsers();
-    public boolean deleteUser(int id);
-    public Movie updateUser(Movie user);
+    public Movie saveMovie(Movie movie);
+    public List<Movie> getAllMovies();
+    public boolean deleteMovie(int id);
+    public Movie updateMovie(Movie movie);
 
 
 }

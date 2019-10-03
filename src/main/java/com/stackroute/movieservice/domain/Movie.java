@@ -43,23 +43,23 @@ public class Movie {
         return title;
     }
 
-    public void setTitle(String firstname) {
-        this.title = firstname;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getGenre() {
         return genre;
     }
 
-    public void setGenre(String lastname) {
-        this.genre = lastname;
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
 
     public BigDecimal getBudget() {
         return budget;
     }
 
-    public void setBudget(BigDecimal age) {
-        this.budget = age;
+    public void setBudget(BigDecimal budget) {
+        this.budget = budget;
     }
 }
