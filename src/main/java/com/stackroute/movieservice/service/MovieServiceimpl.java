@@ -5,15 +5,40 @@ import com.stackroute.movieservice.exceptions.MovieAlreadyExistsException;
 import com.stackroute.movieservice.exceptions.MovieNotFoundException;
 import com.stackroute.movieservice.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.ApplicationListener;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.core.env.Environment;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
-@Service
-public class MovieServiceimpl implements MovieService {
+//@Service
+@Component
+@ConfigurationProperties("application.properties")
+public class MovieServiceimpl implements MovieService, ApplicationListener<ApplicationReadyEvent>, CommandLineRunner {
 
-    MovieRepository movieRepository;
+    @Autowired
+    Environment environment;
+
+    @Value("${movieid:default}")
+    int movieid;
+//    @Value("${title:default}")
+//    String title;
+    @Value("${genre:default}")
+    String genre;
+    @Value("${budget:default}")
+    BigDecimal budget;
+    
+
+    @Autowired
+    private MovieRepository movieRepository;
 
     @Autowired
     public MovieServiceimpl(MovieRepository movieRepository)
@@ -67,4 +92,15 @@ public class MovieServiceimpl implements MovieService {
         return movieRepository.getMovies(name);
     }
 
+    @Override
+    public void run(String... args) throws Exception {
+//        Movie movie = new Movie(movieid, title, genre, budget);
+//        movieRepository.save(movie);
+    }
+
+    @Override
+    public void onApplicationEvent(ApplicationReadyEvent applicationReadyEvent) {
+        Movie movie= new Movie(1,environment.getProperty("title"),genre,budget);
+        movieRepository.save(movie);
+    }
 }
