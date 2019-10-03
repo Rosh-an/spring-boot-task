@@ -7,9 +7,9 @@ import java.math.BigDecimal;
 @Entity
 public class Movie {
     @Id
-    int movieid;
-    String title,genre;
-    BigDecimal budget;
+    private int movieid;
+    private String title,genre;
+    private BigDecimal budget;
 
     public Movie() {
     }
