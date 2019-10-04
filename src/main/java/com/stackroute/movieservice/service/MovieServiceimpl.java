@@ -19,7 +19,8 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.util.List;
 
-//@Service
+@Primary
+@Service
 @Component
 @ConfigurationProperties("application.properties")
 public class MovieServiceimpl implements MovieService, ApplicationListener<ApplicationReadyEvent>, CommandLineRunner {
@@ -35,7 +36,7 @@ public class MovieServiceimpl implements MovieService, ApplicationListener<Appli
     String genre;
     @Value("${budget:default}")
     BigDecimal budget;
-    
+
 
     @Autowired
     private MovieRepository movieRepository;
@@ -97,6 +98,7 @@ public class MovieServiceimpl implements MovieService, ApplicationListener<Appli
 //        Movie movie = new Movie(movieid, title, genre, budget);
 //        movieRepository.save(movie);
     }
+
 
     @Override
     public void onApplicationEvent(ApplicationReadyEvent applicationReadyEvent) {
