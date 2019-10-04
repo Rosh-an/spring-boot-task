@@ -4,6 +4,7 @@ import com.stackroute.movieservice.domain.Movie;
 import com.stackroute.movieservice.exceptions.MovieAlreadyExistsException;
 import com.stackroute.movieservice.exceptions.MovieNotFoundException;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,7 @@ import java.util.List;
 @Service
 @Component
 @Qualifier("dummyclass")
+@Profile("dummy")
 public class MovieDummyServiceimpl implements MovieService {
 
 
