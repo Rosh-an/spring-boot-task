@@ -12,7 +12,7 @@ import java.util.List;
 
 @Service
 @Component
-@Qualifier("dummyclass")
+//@Qualifier("dummyclass")
 @Profile("dummy")
 public class MovieDummyServiceimpl implements MovieService {
 

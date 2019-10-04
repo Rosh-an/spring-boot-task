@@ -5,8 +5,10 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.math.BigDecimal;
 
 @Entity
@@ -17,7 +19,8 @@ import java.math.BigDecimal;
 public class Movie {
     @Id
     private int movieid;
-    private String title,genre;
+    private String title;
+    private String genre;
     private BigDecimal budget;
 
 //    public Movie() {

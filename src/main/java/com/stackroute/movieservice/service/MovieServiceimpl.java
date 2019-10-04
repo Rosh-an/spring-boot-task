@@ -20,8 +20,8 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.util.List;
 
-@Primary
-@Profile("main")
+//@Primary
+@Profile("prod")
 @Service
 @Component
 @ConfigurationProperties("application.properties")
