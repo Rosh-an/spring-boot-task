@@ -13,7 +13,7 @@ public interface MovieService {
     public List<Movie> getAllMovies();
     public boolean deleteMovie(int id) throws MovieNotFoundException;
     public Movie updateMovie(Movie movie);
-    public List<Movie> getMovies(String name);
+    public List<Movie> getMovies(String name) throws MovieNotFoundException;
 
 
 }

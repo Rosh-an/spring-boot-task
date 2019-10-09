@@ -67,8 +67,14 @@ public class MovieController {
     @GetMapping("movie/{title}")
     public ResponseEntity<?> getMovies(@PathVariable("title") String title)
     {
-        return new ResponseEntity<List<Movie>>(movieService.getMovies(title),HttpStatus.OK);
-
+        ResponseEntity responseEntity;
+        try {
+            return new ResponseEntity<List<Movie>>(movieService.getMovies(title),HttpStatus.OK);
+        } catch(MovieNotFoundException e)
+        {
+            responseEntity= new ResponseEntity<String>(e.getMessage(),HttpStatus.CONFLICT);
+        }
+        return responseEntity;
     }
 
 }

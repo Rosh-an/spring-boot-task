@@ -2,6 +2,7 @@ package com.stackroute.movieservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -13,6 +14,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import static springfox.documentation.builders.PathSelectors.regex;
 
 //@SpringBootApplication
+@SpringBootApplication
 @Configuration
 @EnableAutoConfiguration
 @ComponentScan(basePackages = "com.stackroute")
@@ -25,14 +27,14 @@ public class MovieserviceApplication {
 
 }
 
-@Configuration
-@EnableSwagger2
-class SwaggerConfig {
-    @Bean
-    public Docket productApi() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .select().apis(RequestHandlerSelectors.basePackage("com.stackroute.movieservice"))
-                .paths(regex("/movie.*"))
-                .build();
-    }
-}
+//@Configuration
+//@EnableSwagger2
+//class SwaggerConfig {
+//    @Bean
+//    public Docket productApi() {
+//        return new Docket(DocumentationType.SWAGGER_2)
+//                .select().apis(RequestHandlerSelectors.basePackage("com.stackroute.movieservice"))
+//                .paths(regex("/movie.*"))
+//                .build();
+//    }
+//}

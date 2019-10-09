@@ -90,7 +90,7 @@ public class MovieServiceimpl implements MovieService, ApplicationListener<Appli
     }
 
     @Override
-    public List getMovies(String name)
+    public List getMovies(String name) throws MovieNotFoundException
     {
         return movieRepository.getMovies(name);
     }
