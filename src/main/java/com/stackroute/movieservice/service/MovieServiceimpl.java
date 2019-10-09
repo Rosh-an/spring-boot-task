@@ -32,7 +32,7 @@ public class MovieServiceimpl implements MovieService, ApplicationListener<Appli
 
     @Value("${movieid:default}")
     int movieid;
-//    @Value("${title:default}")
+    //    @Value("${title:default}")
 //    String title;
     @Value("${genre:default}")
     String genre;
@@ -44,21 +44,18 @@ public class MovieServiceimpl implements MovieService, ApplicationListener<Appli
     private MovieRepository movieRepository;
 
     @Autowired
-    public MovieServiceimpl(MovieRepository movieRepository)
-    {
+    public MovieServiceimpl(MovieRepository movieRepository) {
         this.movieRepository = movieRepository;
     }
 
 
     @Override
     public Movie saveMovie(Movie movie) throws MovieAlreadyExistsException {
-        if(movieRepository.existsById(movie.getMovieid()))
-        {
+        if (movieRepository.existsById(movie.getMovieid())) {
             throw new MovieAlreadyExistsException("Movie already exists");
         }
-        Movie savedmovie= movieRepository.save(movie);
-        if(savedmovie==null)
-        {
+        Movie savedmovie = movieRepository.save(movie);
+        if (savedmovie == null) {
             throw new MovieAlreadyExistsException("Movie already exits");
         }
         return savedmovie;
@@ -71,8 +68,7 @@ public class MovieServiceimpl implements MovieService, ApplicationListener<Appli
 
     @Override
     public boolean deleteMovie(int id) throws MovieNotFoundException {
-        if(!movieRepository.existsById(id))
-        {
+        if (!movieRepository.existsById(id)) {
             throw new MovieNotFoundException("Movie Not Found");
         }
         movieRepository.deleteById(id);
@@ -81,17 +77,17 @@ public class MovieServiceimpl implements MovieService, ApplicationListener<Appli
 
     @Override
     public Movie updateMovie(Movie movie) {
-        Movie updatedmovie= movieRepository.getOne(movie.getMovieid());
-        updatedmovie.setTitle(movie.getTitle());
+        Movie updatedmovie = movieRepository.getOne(movie.getMovieid());
+        if(updatedmovie != null)
+        {updatedmovie.setTitle(movie.getTitle());
         updatedmovie.setGenre(movie.getGenre());
-        updatedmovie.setBudget(movie.getBudget());
-    //    saveduser.setId(user.getId());
+        updatedmovie.setBudget(movie.getBudget());}
+        //    saveduser.setId(user.getId());
         return movieRepository.save(updatedmovie);
     }
 
     @Override
-    public List getMovies(String name) throws MovieNotFoundException
-    {
+    public List getMovies(String name) throws MovieNotFoundException {
         return movieRepository.getMovies(name);
     }
 
@@ -104,7 +100,7 @@ public class MovieServiceimpl implements MovieService, ApplicationListener<Appli
 
     @Override
     public void onApplicationEvent(ApplicationReadyEvent applicationReadyEvent) {
-        Movie movie= new Movie(1,environment.getProperty("title"),genre,budget);
+        Movie movie = new Movie(1, environment.getProperty("title"), genre, budget);
         movieRepository.save(movie);
     }
 }

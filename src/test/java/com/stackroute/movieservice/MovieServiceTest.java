@@ -3,6 +3,7 @@ package com.stackroute.movieservice;
 
 import com.stackroute.movieservice.domain.Movie;
 import com.stackroute.movieservice.exceptions.MovieAlreadyExistsException;
+import com.stackroute.movieservice.exceptions.MovieNotFoundException;
 import com.stackroute.movieservice.repository.MovieRepository;
 import com.stackroute.movieservice.service.MovieService;
 import com.stackroute.movieservice.service.MovieServiceimpl;
@@ -78,6 +79,64 @@ public class MovieServiceTest {
 
 
     }
+
+    @Test
+    public void updateMovieTestSuccess() throws MovieAlreadyExistsException {
+
+        Movie m1=new Movie(10,"AB","Comedy",BigDecimal.valueOf(2000));
+        Movie updatedMovie=null;
+        when(movieRepository.save((Movie)any())).thenReturn(movie);
+        when(movieRepository.getOne(movie.getMovieid())).thenReturn(movie);
+        updatedMovie = movieServiceimpl.updateMovie(m1);
+//        when(movieRepository.save(updatedMovie)).thenReturn(updatedMovie);
+        Assert.assertEquals(m1,updatedMovie);
+        //verify here verifies that userRepository save method is only called once
+        verify(movieRepository,times(1)).save(movie);
+        verify(movieRepository,times(1)).save(m1);
+
+    }
+
+    @Test
+    public void updateMovieTestFailure() throws MovieAlreadyExistsException {
+
+        Movie m1=new Movie(10,"AB","Comedy",BigDecimal.valueOf(2000));
+        Movie m2=new Movie(10,"A","Comedy",BigDecimal.valueOf(2000));
+        Movie updatedMovie=null;
+        when(movieRepository.save((Movie)any())).thenReturn(movie);
+        when(movieRepository.getOne(movie.getMovieid())).thenReturn(movie);
+        updatedMovie = movieServiceimpl.updateMovie(m1);
+//        when(movieRepository.save(updatedMovie)).thenReturn(updatedMovie);
+        Assert.assertNotEquals(m2,updatedMovie);
+        //verify here verifies that userRepository save method is only called once
+        verify(movieRepository,times(1)).save(movie);
+        verify(movieRepository,times(1)).save(m1);
+
+    }
+
+    @Test
+    public void deleteMovieTestSuccess() throws MovieNotFoundException, MovieAlreadyExistsException {
+//        Movie m1=new Movie(10,"AB","Comedy",BigDecimal.valueOf(2000));
+        when(movieRepository.save((Movie)any())).thenReturn(movie);
+        movieServiceimpl.saveMovie(movie);
+        when(movieRepository.existsById(movie.getMovieid())).thenReturn(true);
+        Boolean status = movieServiceimpl.deleteMovie(movie.getMovieid());
+        Assert.assertEquals(true,status);
+        //verify here verifies that userRepository save method is only called once
+        verify(movieRepository,times(1)).save(movie);
+    }
+
+    @Test(expected = MovieNotFoundException.class)
+    public void deleteMovieTestFailure() throws MovieNotFoundException, MovieAlreadyExistsException {
+//        Movie m1=new Movie(10,"AB","Comedy",BigDecimal.valueOf(2000));
+        when(movieRepository.save((Movie)any())).thenReturn(movie);
+        movieServiceimpl.saveMovie(movie);
+        when(movieRepository.existsById(movie.getMovieid())).thenReturn(true);
+        Boolean status = movieServiceimpl.deleteMovie(1234);
+        Assert.assertEquals(true,status);
+        //verify here verifies that userRepository save method is only called once
+        verify(movieRepository,times(1)).save(movie);
+    }
+
 
     @Test
     public void getAllMovie(){

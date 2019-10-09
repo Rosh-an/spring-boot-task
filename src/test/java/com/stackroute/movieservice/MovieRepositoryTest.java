@@ -93,17 +93,17 @@ public class MovieRepositoryTest {
         Assert.assertNotEquals(1,fetchMovieList.get(0).getMovieid());
     }
 
-    @Test
-    public void testGetMovies()
-    {
-        Movie m1=new Movie(1,"Bean","Comedy",BigDecimal.valueOf(50000));
-        Movie m2=new Movie(2,"Insidious","Horror",BigDecimal.valueOf(20000));
-        movieRepository.save(m1);
-        movieRepository.save(m2);
-        List list= new ArrayList();
-        list = movieRepository.getMovies("Bean");
-        Assert.assertEquals(1,list.get(0).);
-    }
+//    @Test
+//    public void testGetMovies()
+//    {
+//        Movie m1=new Movie(1,"Bean","Comedy",BigDecimal.valueOf(50000));
+//        Movie m2=new Movie(2,"Insidious","Horror",BigDecimal.valueOf(20000));
+//        movieRepository.save(m1);
+//        movieRepository.save(m2);
+//        List list= new ArrayList();
+//        list = movieRepository.getMovies("Bean");
+//        Assert.assertEquals(1,list.get(0).);
+//    }
 
 
     @Test
