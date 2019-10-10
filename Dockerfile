@@ -1,6 +1,8 @@
 FROM openjdk:11
 WORKDIR usr/src
+
 # ENV MYSQL_DATABASE=movie
+
 # ENV MYSQL_USER=roshan
 # ENV MYSQL_PASSWORD=stackroute123
 # ENV MYSQL_CI_URL=jdbc:mysql://localhost:3306/movie
