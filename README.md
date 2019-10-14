@@ -45,3 +45,6 @@ Use spring developer tool and verify that changes are getting reflected without 
 
 actuator
 Use spring boot actuator to collect metrics for your service endpoints
+
+
+LATEST CODE IN spring-developer-tool
