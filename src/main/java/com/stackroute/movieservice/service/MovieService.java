@@ -9,11 +9,11 @@ import java.util.List;
 
 public interface MovieService {
 
-    public Movie saveMovie(Movie movie) throws MovieAlreadyExistsException;
-    public List<Movie> getAllMovies();
-    public boolean deleteMovie(int id) throws MovieNotFoundException;
-    public Movie updateMovie(Movie movie);
-    public List<Movie> getMovies(String name);
+    public Movie saveMovie(Movie movie) throws MovieAlreadyExistsException; //function to save new movie data
+    public List<Movie> getAllMovies() throws MovieNotFoundException; //function to extract data of all movies
+    public Movie deleteMovie(int id) throws MovieNotFoundException; //function to delete a certain movie from the database
+    public Movie updateMovie(Movie movie) throws MovieNotFoundException; //function to update movie details
+    public List<Movie> getMovies(String name) throws MovieNotFoundException; //function to obtain movie data using movie name
 
 
 }

@@ -17,61 +17,11 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @Builder
 public class Movie {
+    //attributes of movie
     @Id
-    private int movieid;
+    private int movieid; //primary key
     private String title;
     private String genre;
     private BigDecimal budget;
 
-//    public Movie() {
-//    }
-//
-//    public Movie(int id, String title, String genre, BigDecimal budget) {
-//        this.movieid = id;
-//        this.title = title;
-//        this.genre = genre;
-//        this.budget = budget;
-//    }
-//
-//    @Override
-//    public String toString() {
-//        return "User{" +
-//                "id=" + movieid +
-//                ", firstname='" + title + '\'' +
-//                ", lastname='" + genre + '\'' +
-//                ", age=" + budget +
-//                '}';
-//    }
-//
-//    public int getId() {
-//        return movieid;
-//    }
-//
-//    public void setId(int id) {
-//        this.movieid = id;
-//    }
-//
-//    public String getTitle() {
-//        return title;
-//    }
-//
-//    public void setTitle(String title) {
-//        this.title = title;
-//    }
-//
-//    public String getGenre() {
-//        return genre;
-//    }
-//
-//    public void setGenre(String genre) {
-//        this.genre = genre;
-//    }
-//
-//    public BigDecimal getBudget() {
-//        return budget;
-//    }
-//
-//    public void setBudget(BigDecimal budget) {
-//        this.budget = budget;
-//    }
 }

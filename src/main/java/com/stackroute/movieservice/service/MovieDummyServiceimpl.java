@@ -18,27 +18,27 @@ public class MovieDummyServiceimpl implements MovieService {
 
 
     @Override
-    public Movie saveMovie(Movie movie) throws MovieAlreadyExistsException {
+    public Movie saveMovie(Movie movie) throws MovieAlreadyExistsException { //function to save new movie data
         return null;
     }
 
     @Override
     public List<Movie> getAllMovies() {
         return null;
-    }
+    } //function to extract data of all movies
 
     @Override
-    public boolean deleteMovie(int id) throws MovieNotFoundException {
-        return false;
+    public Movie deleteMovie(int id) throws MovieNotFoundException { //function to delete a certain movie from the database
+        return null;
     }
 
     @Override
     public Movie updateMovie(Movie movie) {
         return null;
-    }
+    } //function to update movie details
 
     @Override
     public List<Movie> getMovies(String name) {
         return null;
-    }
+    } //function to obtain movie data using movie name
 }

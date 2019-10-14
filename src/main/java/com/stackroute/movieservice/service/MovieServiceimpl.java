@@ -65,22 +65,28 @@ public class MovieServiceimpl implements MovieService, ApplicationListener<Appli
     }
 
     @Override
-    public List<Movie> getAllMovies() {
+    public List<Movie> getAllMovies() throws MovieNotFoundException {
+
         return movieRepository.findAll();
     }
 
     @Override
-    public boolean deleteMovie(int id) throws MovieNotFoundException {
+    public Movie deleteMovie(int id) throws MovieNotFoundException {
         if(!movieRepository.existsById(id))
         {
             throw new MovieNotFoundException("Movie Not Found");
         }
+        Movie temp= movieRepository.getOne(id);
         movieRepository.deleteById(id);
-        return true;
+        return temp;
     }
 
     @Override
-    public Movie updateMovie(Movie movie) {
+    public Movie updateMovie(Movie movie) throws MovieNotFoundException {
+        if(!movieRepository.existsById(movie.getMovieid()))
+        {
+            throw new MovieNotFoundException("Movie Not Found");
+        }
         Movie updatedmovie= movieRepository.getOne(movie.getMovieid());
         updatedmovie.setTitle(movie.getTitle());
         updatedmovie.setGenre(movie.getGenre());
@@ -90,8 +96,11 @@ public class MovieServiceimpl implements MovieService, ApplicationListener<Appli
     }
 
     @Override
-    public List getMovies(String name)
-    {
+    public List getMovies(String name) throws MovieNotFoundException {
+        if(movieRepository.getMovies(name).size()==0)
+        {
+            throw new MovieNotFoundException("Movie Not Found");
+        }
         return movieRepository.getMovies(name);
     }
 

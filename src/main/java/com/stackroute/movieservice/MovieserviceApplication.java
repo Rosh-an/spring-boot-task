@@ -12,10 +12,12 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import static springfox.documentation.builders.PathSelectors.regex;
 
+//Main file
+
 //@SpringBootApplication
 @Configuration
 @EnableAutoConfiguration
-@ComponentScan(basePackages = "com.stackroute")
+@ComponentScan(basePackages = "com.stackroute") //scanning for components in com.stackroute
 public class MovieserviceApplication {
 
 
@@ -25,14 +27,3 @@ public class MovieserviceApplication {
 
 }
 
-@Configuration
-@EnableSwagger2
-class SwaggerConfig {
-    @Bean
-    public Docket productApi() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .select().apis(RequestHandlerSelectors.basePackage("com.stackroute.movieservice"))
-                .paths(regex("/movie.*"))
-                .build();
-    }
-}
